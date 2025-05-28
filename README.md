@@ -1,10 +1,15 @@
 # FAIRSET
-FAIRSET: an inclusive and balanced face landmark annotations dataset
+**FAIRSET : an inclusive and balanced face landmark annotations dataset**
 
-# 1. Setup your Python environt
-<u>Tested on Python 3.11</u>, but might still work on versions >= 3.9
+FAIRSET images are sourced from [WiderFace](http://shuoyang1213.me/WIDERFACE/) and [DAD-3DHeads](https://github.com/PinataFarms/DAD-3DHeads/) datasets, and the base of the demographics annotations are taken from [Amazon Alexa WiderFace](https://github.com/amazon-science/widerface-demographics/) and DAD-3DHeads annotations.
 
-# 2. Download the dataset
+## How-to guide
+### 1. Setup your Python environment
+The provided code was <u>tested on Python 3.11</u>, but it might still work on versions >= 3.9
+- Python 3.11
+- `python3 -m pip install -r ./requirements.txt`
+
+### 2. Download FAIRSET images
 1) Request access to the DAD-3DHeads dataset: https://www.pinatafarm.com/research/dad-3dheads/dataset
 2) Execute the download script
 **Example:** `python3 ./download.py -o assets -d ~/DAD-3DHeadsDataset.zip`
@@ -32,13 +37,34 @@ FAIRSET: an inclusive and balanced face landmark annotations dataset
 >   - alexa (if -a was passed)
 
 
-# References
+## Built Upon the Works of :
 > **Dad-3DHeads**
 > T. Martyniuk, O. Kupyn, Y. Kurlyak, I. Krashenyi, J. Matas, and V. Sharmanska, “DAD-3DHeads: A Large-scale Dense, Accurate and Diverse Dataset for 3D Head Alignment from a Single Image,” in 2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), New Orleans, LA, USA: IEEE, Jun. 2022, pp. 20910–20920. doi: 10.1109/CVPR52688.2022.02027.
-
+>
 > **Amazon Alexa Widerface Annotations**
-> Y. Yang et al., “Enhancing Fairness in Face Detection in Computer Vision Systems by Demographic Bias Mitigation,” in Proceedings of the 2022 	AAAI/ACM Conference on AI, Ethics, and Society, Oxford United Kingdom: ACM, Jul. 2022, pp. 813–822. doi: 10.1145/3514094.3534153.
+> Y. Yang et al., “Enhancing Fairness in Face Detection in Computer Vision Systems by Demographic Bias Mitigation,” in Proceedings of the 2022 	AAAI/ACM Conference on AI, Ethics, and Society, Oxford United Kingdom: ACM, Jul. 2022, pp. 813–822. doi: 10.1145/3514094.3534153, https://www.amazon.science/publications/enhancing-fairness-in-face-detection-in-computer-vision-systems-by-demographic-bias-mitigation
 
+## Citation
 
-# License
+Please cite the following papers if you use FAIRSET in your research projects :
+
+<pre>
+<b>FAIRSET dataset</b>
+@inproceedings{fairset2025,
+    title = {Towards a Gold Standard for AI Facial Landmarks Estimation: Constructing FAIRSET, a Balanced and Inclusive Landmark Database},
+    author = {Zelovic, Nikola and Joly, Ian-Mathieu and Riesco, Eleonor and Lebel, Karina},
+    booktitle = 2025 22nd Conference of the International Graphonomics Society - Investigating Human Movements | Handwriting and Beyond},
+    year = {2025}
+}
+
+<b>Face Landmark Detection AI Evaluation and Bias Analysis Code</b>
+@inproceedings{joly_benchmarking_2025,
+    title = {Benchmarking Facial Landmarks Estimation: Evaluating Popular Algorithms Using FAIRSET, a Balanced Landmark Database},
+    author = {Joly, Ian-Mathieu and Zelovic, Nikola and Riesco, Eleonor and Lebel, Karina},
+    booktitle = 2025 22nd Conference of the International Graphonomics Society - Investigating Human Movements | Handwriting and Beyond},
+    year = {2025}
+}
+</pre>
+
+## License
 FAIRSET is licensed under CC BY-NC-SA 4.0. View the LICENSE file or visit https://creativecommons.org/licenses/by-nc-sa/4.0/
