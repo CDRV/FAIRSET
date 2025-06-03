@@ -1,7 +1,22 @@
 # FAIRSET
-**FAIRSET : an inclusive and balanced face landmark annotations dataset**
+## FAIRSET : an inclusive and balanced face landmark annotations dataset
+
+**FAIRSET** was constructed with the goal of having a publicly available image dataset for the purpose of **evaluating the precision and biaises of points placement of Face Landmark Detection (FLD) artificial intelligence models**. Few models provide information about their biases and even less research is conducted about it, specifically for face landmarking models.
 
 FAIRSET images are sourced from [WiderFace](http://shuoyang1213.me/WIDERFACE/) and [DAD-3DHeads](https://github.com/PinataFarms/DAD-3DHeads/) datasets, and the base of the demographics annotations are taken from [Amazon Alexa WiderFace](https://github.com/amazon-science/widerface-demographics/) and DAD-3DHeads annotations.
+
+FAIRSET annotations contain information about:
+- face landmarks;
+- skin tone (Fitzpatrick scale);
+- perceived sex;
+- age (child, young adult, adult and senior).
+
+The annotations are available in [fairset.json](fairset.json). Additional bounding box information for targetted faces is available in [fairset_bbox.json](fairset_bbox.json). The original bounding boxes from WiderFace and DAD-3DHeads were corrected using the [RetinaFace](https://github.com/serengil/retinaface) model.
+
+An example using FAIRSET for the evaluation of biases of Google MediaPipe FaceMesh is provided [here](#3-analyse-the-precision-and-demographic-biases-or-your-face-landmarks-detection-ai-model.)
+
+For additional information on FLD biaises, take a look *Benchmarking Facial Landmarks Estimation: Evaluating Popular Algorithms Using FAIRSET, a Balanced Landmark Database*, Joly et al., in the IGS 2025 conference proceedings, where we present results about MediaPipe FaceMesh, OpenFace 2.2 and 3DDFAv3.
+
 
 ## How-to guide
 ### 1. Setup your Python environment
