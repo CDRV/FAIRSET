@@ -38,6 +38,11 @@ The provided code was <u>tested on Python 3.11</u>, but it might still work on v
 >   - alexa (if -a was passed)
 
 
+### 3) ANALYSE the precision and demographic biases or your Face Landmarks Detection AI model
+Analysis steps and details can be found in the [analysis README](analysis/README.md).
+
+A Python exemple is provided analysing the age biases of MediaPipe FaceMesh.
+
 ## Built Upon the Works of :
 > **Dad-3DHeads**<br/>
 > T. Martyniuk, O. Kupyn, Y. Kurlyak, I. Krashenyi, J. Matas, and V. Sharmanska, “DAD-3DHeads: A Large-scale Dense, Accurate and Diverse Dataset for 3D Head Alignment from a Single Image,” in 2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), New Orleans, LA, USA: IEEE, Jun. 2022, pp. 20910–20920. doi: 10.1109/CVPR52688.2022.02027.

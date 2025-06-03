@@ -1,7 +1,7 @@
 
 DATA = {
-    "exclude_images_file": "IGS2025_missing_images.txt",
-    "annotations_file": "annotations_IGS2025.json",
+    "exclude_images_file": "mediapipe_skipped_faces.txt",
+    "annotations_file": "fairset.json",
     "estimations_file": "mediapipe_estimations.json",
 }
 
