@@ -10,6 +10,8 @@ class BinaryGroupAnalysis(DiscreteGroupFactors):
         super().__init__(data_loader, factor)
 
     def t_test(self):
-        return ttest_ind(self.data_loader.get_errors_by_group(self._factor, FACTORS[self._factor][0]),
-                         self.data_loader.get_errors_by_group(self._factor, FACTORS[self._factor][1]),
-                         equal_var=False)
+        return ttest_ind(
+            self.data_loader.get_errors_by_group(self._factor, FACTORS[self._factor][0]),
+            self.data_loader.get_errors_by_group(self._factor, FACTORS[self._factor][1]),
+            equal_var=False,
+        )

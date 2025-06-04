@@ -1,10 +1,11 @@
-import numpy as np
-import cv2
 import json
-
 from dataclasses import dataclass
-from typing import List, Optional, Tuple, Any, Dict
 from enum import Enum, auto
+from typing import Any, Dict, List, Optional, Tuple
+
+import cv2
+import numpy as np
+
 from analysis.data.locations import KEYPOINTS
 
 
@@ -99,7 +100,7 @@ class Age(DiscreteFactorEnum):
             Age.Adult: (0.3, 0.6, 0.4),
             Age.YoungAdult: (0.3, 0.5, 0.7),
             Age.Child: (0.9, 0.7, 0.5),
-            Age.NotAvailable: (0.6, 0.6, 0.6)
+            Age.NotAvailable: (0.6, 0.6, 0.6),
         }
         return colors[self]
 
@@ -181,11 +182,13 @@ class Keypoint:
     id: int
 
     def annotate_image(
-            self, image: np.ndarray, kp_color: Tuple[int, int, int] = (0, 0, 255),
-            id_color: Tuple[int, int, int] = (0, 0, 0)):
+        self,
+        image: np.ndarray,
+        kp_color: Tuple[int, int, int] = (0, 0, 255),
+        id_color: Tuple[int, int, int] = (0, 0, 0),
+    ):
         image = cv2.circle(image, (self.x, self.y), 5, kp_color, -1)
-        image = cv2.putText(image, str(
-            self.id), (self.x + 10, self.y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.3, id_color, 1)
+        image = cv2.putText(image, str(self.id), (self.x + 10, self.y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.3, id_color, 1)
         return image
 
     def distance(self, kp: "Keypoint") -> float:
@@ -309,5 +312,5 @@ FACTORS = {
     "skintone": [skintone for skintone in Skintone if skintone != Skintone.NotAvailable],
     "expressions": [True, False],
     "lighting": [True, False],
-    "occlusion": [True, False]
+    "occlusion": [True, False],
 }

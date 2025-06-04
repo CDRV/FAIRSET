@@ -1,9 +1,9 @@
 import pandas as pd
-from statsmodels.stats.anova import anova_lm
 from statsmodels.formula.api import ols
+from statsmodels.stats.anova import anova_lm
 
 from analysis.data.data_loader import DataLoader
-from analysis.data.datatypes import DiscreteFactorEnum, FACTORS
+from analysis.data.datatypes import FACTORS, DiscreteFactorEnum
 from analysis.stats.discrete_group_factors import DiscreteGroupFactors
 
 
@@ -22,9 +22,9 @@ class NGroupAnalysis(DiscreteGroupFactors):
                     group_name = str(group)
                 records.append({"group": group_name, "error": err})
 
-        df = pd.DataFrame(records, columns=['error', 'group'])
-        model = ols('error ~ C(group)', data=df).fit()
+        df = pd.DataFrame(records, columns=["error", "group"])
+        model = ols("error ~ C(group)", data=df).fit()
 
         anova_results = anova_lm(model, typ=2)
 
-        return {"F": anova_results.loc['C(group)', 'F'], "p": anova_results.loc['C(group)', 'PR(>F)']}
+        return {"F": anova_results.loc["C(group)", "F"], "p": anova_results.loc["C(group)", "PR(>F)"]}

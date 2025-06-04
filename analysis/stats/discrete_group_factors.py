@@ -1,10 +1,10 @@
 import numpy as np
-from scipy.stats import levene, shapiro, skew, kurtosis
-from statsmodels.stats.multicomp import pairwise_tukeyhsd
 import pandas as pd
+from scipy.stats import kurtosis, levene, shapiro, skew
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
 
-from analysis.data.datatypes import FACTORS
 from analysis.data.data_loader import DataLoader
+from analysis.data.datatypes import FACTORS
 
 
 class DiscreteGroupFactors:

@@ -1,6 +1,8 @@
 import argparse
+
 import numpy as np
 from termcolor import colored
+
 from analysis.data.data_loader import DataLoader
 from analysis.data.datatypes import Age, Sex, Skintone
 from analysis.stats.discrete_groups.n_group_analysis import NGroupAnalysis
@@ -52,14 +54,29 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Analysis per keypoint on a demographic group")
     parser.add_argument(
-        "-f", "--factor", action="store_true", default="age",
-        help="The demographic factor on which to run the analysis (default is 'age', options are 'age', 'sex' and 'skintone')")
-    parser.add_argument("-a", "--all", action="store_true", default=True,
-                        help="Display all results, including non-significant keypoints")
-    parser.add_argument("-p", "--prerequisites", action="store_true",
-                        help="Runs and displays the prerequisites for the analysis")
-    parser.add_argument("-d", "--descriptive", action="store_true", default=True,
-                        help="Runs and displays the descriptive statistics for the analysis")
+        "-f",
+        "--factor",
+        action="store_true",
+        default="age",
+        help="The demographic factor on which to run the analysis (default is 'age', options are 'age', 'sex' and 'skintone')",
+    )
+    parser.add_argument(
+        "-a",
+        "--all",
+        action="store_true",
+        default=True,
+        help="Display all results, including non-significant keypoints",
+    )
+    parser.add_argument(
+        "-p", "--prerequisites", action="store_true", help="Runs and displays the prerequisites for the analysis"
+    )
+    parser.add_argument(
+        "-d",
+        "--descriptive",
+        action="store_true",
+        default=True,
+        help="Runs and displays the descriptive statistics for the analysis",
+    )
 
     args = parser.parse_args()
     main(args)

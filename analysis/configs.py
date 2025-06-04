@@ -1,4 +1,3 @@
-
 DATA = {
     "exclude_images_file": "mediapipe_skipped_faces.txt",
     "annotations_file": "fairset.json",
@@ -8,7 +7,7 @@ DATA = {
 FILTERS = {
     "min_iod": 50,  # Set -1 to disable filtering by inter-ocular distance,
     "max_nme": 1,  # Set -1 to disable filtering by NME,
-    "remove_statistical_bias": True
+    "remove_statistical_bias": True,
 }
 
 # Configurations for MediaPipe extraction sample code

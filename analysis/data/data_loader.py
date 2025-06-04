@@ -1,9 +1,10 @@
 import json
+from typing import Any, Dict, List, Optional
+
 import numpy as np
-from typing import Any, List, Dict, Optional
 
 from analysis.configs import DATA, FILTERS
-from analysis.data.datatypes import Image, Person, Keypoint, Skintone, Age, Sex
+from analysis.data.datatypes import Age, Image, Keypoint, Person, Sex, Skintone
 from analysis.data.locations import KEYPOINTS
 
 
@@ -14,34 +15,39 @@ class DataLoader:
             self._removed_images = list(np.loadtxt(DATA["exclude_images_file"], dtype=str))
 
         if DATA.get("annotations_file") is None:
-            raise Exception(
-                "Annotations file is not specified in the DATA config. Please check the configuration.")
+            raise Exception("Annotations file is not specified in the DATA config. Please check the configuration.")
         self._annotations: List[Image] = []
         self._load_annotations()
 
         if DATA.get("estimations_file") is None:
-            raise Exception(
-                "Estimation file is not specified in the DATA config. Please check the configuration.")
+            raise Exception("Estimation file is not specified in the DATA config. Please check the configuration.")
         self._estimations: Dict[str, Dict[int, Dict[int, Keypoint]]] = {}
         self._load_estimations()
 
         self._location_errors: Dict[int, list | np.ndarray] = {kp: [] for kp in KEYPOINTS.keys()}
         self._extract_location_errors()
-        self._statistical_biases: Dict[int, tuple] = {kp_id: (np.median(errors[:, 0]), np.median(
-            errors[:, 1])) for kp_id, errors in self._location_errors.items() if len(errors) > 0}
+        self._statistical_biases: Dict[int, tuple] = {
+            kp_id: (np.median(errors[:, 0]), np.median(errors[:, 1]))
+            for kp_id, errors in self._location_errors.items()
+            if len(errors) > 0
+        }
 
         self._error_indexes: Dict[str, Dict[Any, list | np.ndarray]] = {
             "location": {kp: [] for kp in KEYPOINTS.keys()},
             "age": {kp: {age: [] for age in Age if age != Age.NotAvailable} for kp in KEYPOINTS.keys()},
             "sex": {kp: {sex: [] for sex in Sex if sex != Sex.NotAvailable} for kp in KEYPOINTS.keys()},
-            "skintone": {kp: {skintone: [] for skintone in Skintone if skintone != Skintone.NotAvailable} for kp in KEYPOINTS.keys()},
+            "skintone": {
+                kp: {skintone: [] for skintone in Skintone if skintone != Skintone.NotAvailable}
+                for kp in KEYPOINTS.keys()
+            },
             "expressions": {kp: {True: [], False: []} for kp in KEYPOINTS.keys()},
             "lighting": {kp: {True: [], False: []} for kp in KEYPOINTS.keys()},
-            "occlusion": {kp: {True: [], False: []} for kp in KEYPOINTS.keys()}
+            "occlusion": {kp: {True: [], False: []} for kp in KEYPOINTS.keys()},
         }
         self._error_indexes["age"]["all"] = {age: [] for age in Age if age != Age.NotAvailable}
-        self._error_indexes["skintone"]["all"] = {skintone: []
-                                                  for skintone in Skintone if skintone != Skintone.NotAvailable}
+        self._error_indexes["skintone"]["all"] = {
+            skintone: [] for skintone in Skintone if skintone != Skintone.NotAvailable
+        }
         self._error_indexes["sex"]["all"] = {sex: [] for sex in Sex if sex != Sex.NotAvailable}
         self._error_indexes["occlusion"]["all"] = {True: [], False: []}
         self._error_indexes["lighting"]["all"] = {True: [], False: []}
@@ -62,14 +68,17 @@ class DataLoader:
                     ]
                     persons.append(
                         Person(
-                            int(person_id), keypoints, Skintone.from_label(person_data["skintone"]),
+                            int(person_id),
+                            keypoints,
+                            Skintone.from_label(person_data["skintone"]),
                             Age.from_label(person_data["age"]),
                             Sex.from_label(person_data["sex"]),
                             person_data.get("occlusion"),
                             person_data.get("lighting"),
-                            person_data.get("expression")))
-                self._annotations.append(Image(
-                    image_name, persons, metadata["width"], metadata["height"]))
+                            person_data.get("expression"),
+                        )
+                    )
+                self._annotations.append(Image(image_name, persons, metadata["width"], metadata["height"]))
 
     def _load_estimations(self):
         with open(DATA["estimations_file"], "r") as file:
@@ -87,9 +96,11 @@ class DataLoader:
         for image in self._annotations:
             if image.name in self._estimations:
                 for person in image.persons:
-                    if person.id in self._estimations.get(
-                            image.name, {}) and person.iod and person.iod > FILTERS.get(
-                            "min_iod", -1):
+                    if (
+                        person.id in self._estimations.get(image.name, {})
+                        and person.iod
+                        and person.iod > FILTERS.get("min_iod", -1)
+                    ):
                         estimations = self._estimations.get(image.name, {})[person.id]
                         for keypoint in person.keypoints:
                             if keypoint.id in estimations:
@@ -97,8 +108,10 @@ class DataLoader:
                                     estimation = estimations[keypoint.id]
                                     dx = (estimation.x - keypoint.x) / person.iod
                                     dy = (estimation.y - keypoint.y) / person.iod
-                                    nme = np.sqrt((dx - self._statistical_biases[keypoint.id][0]) ** 2
-                                                  + (dy - self._statistical_biases[keypoint.id][1]) ** 2)
+                                    nme = np.sqrt(
+                                        (dx - self._statistical_biases[keypoint.id][0]) ** 2
+                                        + (dy - self._statistical_biases[keypoint.id][1]) ** 2
+                                    )
                                 else:
                                     nme = keypoint.distance(estimations[keypoint.id]) / person.iod
                                 if nme < FILTERS.get("max_nme", -1) or FILTERS.get("max_nme", -1) == -1:
@@ -142,10 +155,10 @@ class DataLoader:
 
                 if person.iod is None or person.iod < FILTERS.get("min_iod", -1):
                     print(
-                        f"Person {person.id} was removed from the analysis because of a small or missing iod in image {image.name}.")
+                        f"Person {person.id} was removed from the analysis because of a small or missing iod in image {image.name}."
+                    )
                     continue
-                estimations = self._estimations.get(
-                    image.name, {}).get(person.id, {})
+                estimations = self._estimations.get(image.name, {}).get(person.id, {})
 
                 for keypoint in person.keypoints:
                     if keypoint.id in estimations:
@@ -159,24 +172,42 @@ class DataLoader:
 
     def get_errors_by_factor(self, factor: str, kp_id: Optional[int] = None) -> np.ndarray:
         if kp_id is not None:
-            return np.array([error for kp_data in self._error_indexes[factor].values()
-                             for kp_errors in kp_data.values() for error in kp_errors if len(kp_errors) > 0])
+            return np.array(
+                [
+                    error
+                    for kp_data in self._error_indexes[factor].values()
+                    for kp_errors in kp_data.values()
+                    for error in kp_errors
+                    if len(kp_errors) > 0
+                ]
+            )
         return np.array(
-            [error for kp_id, kp_errors in self._error_indexes[factor].items() for error in kp_errors
-             if len(kp_errors) > 0 and kp_id != "all"])
+            [
+                error
+                for kp_id, kp_errors in self._error_indexes[factor].items()
+                for error in kp_errors
+                if len(kp_errors) > 0 and kp_id != "all"
+            ]
+        )
 
     def get_errors_by_group(self, factor: str, group: Any, kp_id: Optional[int] = None) -> np.ndarray:
         if kp_id is not None:
             return self._error_indexes[factor][kp_id][group]
-        return np.array([nme for kp_errors, kp_id in self._error_indexes[factor].items()
-                         if group in kp_errors for nme in kp_errors[group] if kp_id != "all"])
+        return np.array(
+            [
+                nme
+                for kp_errors, kp_id in self._error_indexes[factor].items()
+                if group in kp_errors
+                for nme in kp_errors[group]
+                if kp_id != "all"
+            ]
+        )
 
     def get_all_group_errors(self, factor: str) -> Dict[str, np.ndarray]:
         return self._error_indexes[factor]["all"]
 
     def get_group_error_by_keypoint_dict(self, factor: str, group: str):
-        return {kp_id: self._error_indexes[factor][kp_id][group]
-                for kp_id in self._error_indexes[factor].keys()}
+        return {kp_id: self._error_indexes[factor][kp_id][group] for kp_id in self._error_indexes[factor].keys()}
 
     def get_errors_by_location(self, keypoint_id: int) -> np.ndarray:
         return self._error_indexes["location"][keypoint_id]
