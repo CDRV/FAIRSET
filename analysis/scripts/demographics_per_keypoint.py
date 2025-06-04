@@ -1,16 +1,23 @@
 import argparse
 import numpy as np
 from termcolor import colored
-from analysis.point_cloud import MeshManager
 from analysis.data.data_loader import DataLoader
-from analysis.data.datatypes import Age
+from analysis.data.datatypes import Age, Sex, Skintone
 from analysis.stats.discrete_groups.n_group_analysis import NGroupAnalysis
 from analysis.utils import display_demog_box_plot
 
+demographics_datatypes = {
+    "age": Age,
+    "sex": Sex,
+    "skintone": Skintone,
+}
+
 
 def main(args):
+    factor = args.factor
+
     data_loader = DataLoader()
-    analysis = NGroupAnalysis(data_loader, "age")
+    analysis = NGroupAnalysis(data_loader, factor)
 
     for kp_id in data_loader.get_keypoint_ids():
         anova = analysis.one_way_anova(kp_id)
@@ -38,12 +45,15 @@ def main(args):
                 print(colored(f"ANOVA for keypoint {kp_id}| F: {anova['F']} p: {anova['p']}", "green"))
 
     if args.descriptive:
-        data = data_loader.get_all_group_errors("age")
-        display_demog_box_plot(data, Age)
+        data = data_loader.get_all_group_errors(factor)
+        display_demog_box_plot(data, demographics_datatypes[factor])
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Analysis per keypoint on by age groups")
+    parser = argparse.ArgumentParser(description="Analysis per keypoint on a demographic group")
+    parser.add_argument(
+        "-f", "--factor", action="store_true", default="age",
+        help="The demographic factor on which to run the analysis (default is 'age', options are 'age', 'sex' and 'skintone')")
     parser.add_argument("-a", "--all", action="store_true", default=True,
                         help="Display all results, including non-significant keypoints")
     parser.add_argument("-p", "--prerequisites", action="store_true",

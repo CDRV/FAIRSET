@@ -56,7 +56,7 @@ The provided code was <u>tested on Python 3.11</u>, but it might still work on v
 ### 3) ANALYSE the precision and demographic biases or your Face Landmarks Detection AI model
 Analysis steps and details can be found in the [analysis README](analysis/README.md).
 
-A Python exemple is provided analysing the age biases of MediaPipe FaceMesh.
+A Python exemple is provided analysing the biases of MediaPipe FaceMesh.
 
 ## Built Upon the Works of :
 > **Dad-3DHeads**<br/>
