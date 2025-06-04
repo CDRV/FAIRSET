@@ -1,1 +1,3 @@
+requests
 unzip_http
+urllib3
