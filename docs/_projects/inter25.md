@@ -55,3 +55,5 @@ On peut donc voir que pour certains points, pour tous les algorithmes, un lien s
 (mettre post-hoc)
 Les tableaux ci-dessus présentent l'augmentation moyenne de la NME pour les points significativement impactés par le facteur démographique par rapport à la moyenne globale de l'algorithme. En d'autres mots, ils démontrent à quel point les différents groupes démographiques impactent les résultats.
 En conclusion, (mettre mini conclusion dataset). Au niveau de l'analyse, on a conclu qu'un lien existe entre les facteurs démographiques de sexe et d'âge, avec une augmentation de l'erreur allant jusqu'à 48 %. Cependant, comme FAIRSET n'est pas balancé dans les différentes couleurs de peau et que l'analyse a montré moins de points impactés, plus d'analyses sont requises pour tisser un lien définitif pour ce facteur.
+
+testing
