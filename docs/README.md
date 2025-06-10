@@ -8,12 +8,12 @@
 
 <br/>
 
-[ ![FAIRSET](./assets/img/bd-fairset.png) ](./assets/img/bd-fairset.png)
+[ ![FAIRSET](./assets/bd-fairset.png) ](./assets/bd-fairset.png)
 
 ## Introduction
 Plusieurs études ont été effectuées afin d'évaluer l'existance de biais dans les modèles d'intelligence artificielle par apprentissage profond. À cet effet, dans le cas des IA de détection dans des images, la majorité des biais démographiques répertoriés touche le sexe, la couleur de peau et l'âge des individus <d-cite key="buolamwini_gender_2018"></d-cite><d-cite key="hazirbas_towards_2021"></d-cite><d-cite key="khalil_investigating_2020"></d-cite><d-cite key="menezes_bias_2021"></d-cite>. Toutefois, l'existance de ces biais dans les modèles de détection de repères de visages n'est pas connue. Les algorithmes de placement de repères de visage « face landmark detection » (FLD) sont des algorithmes servant à annoter certains points clés sur le visage des différentes personnes dans une image.
 
-![Face landmarks detection](assets/img/face-landmark-detection-steps.png)
+![Face landmarks detection](assets/face-landmark-detection-steps.png)
 <div style="font-size: 0.7em; margin-top: -1em;">
     <b>Figure 1)</b> Étapes de détection des repères de visages d'un individu <d-cite key="yang_enhancing_2022"></d-cite>
 </div>
