@@ -28,8 +28,19 @@ Comme résultat, nous avons développé le jeu de données FAIRSET afin de valid
     <b>Figure 2)</b> Étapes de création de FAIRSET <d-cite key="yang_enhancing_2022"></d-cite>
 </div>
 
-Par la suite, nous avons été capables de conduire une analyse statistique afin de valider si les algorithmes de "face landmarking" présentent bel et bien des biais démographiques. Les algorithmes Mediapipe FaceMeshV2, 3DDFAv3 et OpenFace2 ont été choisis pour leur popularité. La métrique utilisée pour cette étude était la NME (Normalized Mean Error), soit l'erreur de placement normalisée par la distance entre les coins externes des yeux de la personne.
-(Mettre image NME poster)
+<img src="assets/fairset-distrib.png" width="50%"/> <img src="assets/fairset-landmarks-nme.png" width="48%"/>
+<div style="font-size: 0.8em; margin-top: -1em;">
+    <b>Figure 3) A)</b> Distribution démographique de FAIRSET. <b>B)</b> Repères annotés dans FAIRSET et erreur normalisée entre annotateurs (<span style="color: green">&bull;</span> ~1mm; <span style="color: yellow">&bull;</span> ~3mm; <span style="color: orange">&bull;</span> ~6mm; <span style="color: red">&bull;</span> ~10mm;
+    <span style="color: darkred">&bull;</span> 23mm)</d-cite>
+</div>
+
+Par la suite, nous avons été capables de conduire une analyse statistique afin de valider si les algorithmes de « face landmarking » présentent bel et bien des biais démographiques. Les algorithmes <b>Mediapipe FaceMesh v2</b>, <b>3DDFAv3</b> et <b>OpenFace2</b> ont été choisis pour leur popularité. La métrique utilisée pour cette étude était la NME (Normalized Mean Error), soit l'erreur de placement normalisée par la distance entre les coins externes des yeux de la personne.
+
+<img src="assets/nme-example.png" alt="NME exemple" height="200px" style="display:block; margin:auto;"/>
+<div style="font-size: 0.8em; margin-top: -0.5em;">
+    <b>Figure 4)</b> Exemple de calcul NME <d-cite key="yang_enhancing_2022"></d-cite>
+</div>
+
 Pour débuter, les statistiques descriptives ont été extraites et présentées dans les graphiques ci-dessous.
 (mettre boxplots)
 De ces résultats, on voit qu'OpenFace2 performe significativement moins bien que les deux autres, ce qui n'est pas surprenant puisqu’il est plus âgé que les deux autres algorithmes. De plus, on peut observer que les médianes sont relativement similaires entre les différentes démographies, mais que la variance varie. Alors, des analyses subséquentes étaient requises pour pousser l'analyse. Une ANOVA pour les facteurs d'âge et de couleur de peau, puis un t-test pour le sexe. Les nombres de points statistiquement affectés (p < 0.05) par les différents facteurs démographiques sont présentés dans le tableau ci-dessous.
