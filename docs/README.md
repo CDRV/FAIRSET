@@ -2,6 +2,8 @@
 ## FAIRSET pour l'évaluation d'IA de détection de repères de visages
 -------
 
+## Cherchez [FAIRSET sur GitHub](https://github.com/cdrv/fairset) !
+
 |<span style="font-size: 1em; font-weight: bold;">Auteurs</span>|<span style="font-size: 1em; font-weight: bold;">Affiliations</span>|
 --------|------------|
 |<span style="font-size: 0.85em; font-weight: bold;">Ian-Mathieu Joly<sup>1,3</sup><br/>Nikola Zelovic<sup>1,3</sup><br/>Eléonor Riesco<sup>2,3</sup><br/>Karina Lebel<sup>1,3</sup></span>|<span style="font-size: 0.85em;"><sup>1</sup>Université de Sherbrooke, Faculté de genie<br/><sup>2</sup>Université de Sherbrooke, Faculté des sciences de l'activité physique<br/><sup>3</sup>Centre de recherche sur le vieillissement</span>|
@@ -45,9 +47,9 @@ Pour débuter, les statistiques descriptives ont été extraites et présentées
 
 ![Erreurs par teinte de peau](assets/boxplots-skin.png)
 <div style="text-align: center; margin-top: -1em;">
-    <img src="assets/boxplots-age.png" height="135px" alt="NME par age"/> <img src="assets/boxplots-sex.png" height="135px" alt="NME par sexe"/>
+    <img src="assets/boxplots-age.png" width="63%" alt="NME par age"/> <img src="assets/boxplots-sex.png" width="36%" alt="NME par sexe"/>
 </div>
-<div style="font-size: 0.8em; margin-top: -1em;">
+<div style="font-size: 0.8em; margin-top: -0.5em;">
     <b>Figure 5) A)</b> Erreurs NME par IA par teinte de peau <b>B)</b> NME par IA par groupe d'âge <b>C)</b> NME par IA par sexe perçu
 </div>
 
