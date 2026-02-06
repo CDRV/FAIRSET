@@ -72,18 +72,32 @@ Please cite the following papers if you use FAIRSET in your research projects :
 <pre>
 <b>FAIRSET dataset</b>
 @inproceedings{fairset2025,
-    title = {Towards a Gold Standard for AI Facial Landmarks Estimation: Constructing FAIRSET, a Balanced and Inclusive Landmark Database},
-    author = {Zelovic, Nikola and Joly, Ian-Mathieu and Riesco, Eleonor and Lebel, Karina},
-    booktitle = 2025 22nd Conference of the International Graphonomics Society - Investigating Human Movements | Handwriting and Beyond},
-    year = {2025}
+	title        = {Towards a Gold Standard for AI Facial Landmarks Estimation: Constructing FAIRSET, a Balanced and Inclusive Landmark Database},
+	author       = {Zelovic, Nikola and Joly, Ian-Mathieu and Riesco Eléonor and Lebel, Karina},
+	year         = 2026,
+	month        = {January},
+	booktitle    = {Proceedings IGS 2025 - Investigating Human Movements | Handwriting and Beyond},
+	publisher    = {Les Presses de l'Université de Montréal (PUM)},
+	address      = {Montreal, QC, Canada},
+	pages        = {218--221},
+	note         = {Available at \url{https://pum.umontreal.ca/catalogue/proceedings_igs_2025}},
+	editor       = {Réjean Plamondon, Céline Rémi, Karina Lebel, Mickaël Begon, Frederic Fol Leymarie, Lama Séoud, Benjamin de Leener, Eva Alonso Ortiz},
+	organization = {International Graphonomics Society}
 }
 
 <b>Face Landmark Detection AI Evaluation and Bias Analysis Code</b>
 @inproceedings{joly_benchmarking_2025,
-    title = {Benchmarking Facial Landmarks Estimation: Evaluating Popular Algorithms Using FAIRSET, a Balanced Landmark Database},
-    author = {Joly, Ian-Mathieu and Zelovic, Nikola and Riesco, Eleonor and Lebel, Karina},
-    booktitle = 2025 22nd Conference of the International Graphonomics Society - Investigating Human Movements | Handwriting and Beyond},
-    year = {2025}
+	title        = {Benchmarking Facial Landmarks Estimation: Evaluating Popular Algorithms Using FAIRSET, a Balanced Landmark Database},
+	author       = {Joly, Ian-Mathieu and Zelovic, Nikola and Riesco Eléonor and Lebel, Karina},
+	year         = 2026,
+	month        = {January},
+	booktitle    = {Proceedings IGS 2025 - Investigating Human Movements | Handwriting and Beyond},
+	publisher    = {Les Presses de l'Université de Montréal (PUM)},
+	address      = {Montreal, QC, Canada},
+	pages        = {93--96},
+	note         = {Available at \url{https://pum.umontreal.ca/catalogue/proceedings_igs_2025}},
+	editor       = {Réjean Plamondon, Céline Rémi, Karina Lebel, Mickaël Begon, Frederic Fol Leymarie, Lama Séoud, Benjamin de Leener, Eva Alonso Ortiz},
+	organization = {International Graphonomics Society}
 }
 </pre>
 
